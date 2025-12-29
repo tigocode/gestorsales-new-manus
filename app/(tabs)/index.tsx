@@ -1,98 +1,116 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { Card } from '@/components/ui/Card'; // Ajuste o caminho se necessário
+import { useRouter } from 'expo-router';
+import { ArrowRight, Bell, Calendar, DollarSign, FileText, MessageCircle } from 'lucide-react-native';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const router = useRouter();
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  // Dados mockados para os agendamentos
+  const nextAppointments = [
+    { id: 1, time: '09:00', patient: 'Victor Araujo', type: 'Particular', mode: 'Online' },
+    { id: 2, time: '12:00', patient: 'Hugo Pontes', type: 'Convênio', mode: 'Presencial' },
+  ];
+
+  return (
+    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ paddingBottom: 100 }}>
+      {/* Header */}
+      <View className="bg-white px-6 pt-16 pb-6 rounded-b-[40px] shadow-sm border-b border-slate-100">
+        <View className="flex-row justify-between items-center mb-6">
+          <View>
+            <Text className="text-slate-500 text-sm font-medium">Bom dia,</Text>
+            <Text className="text-2xl font-bold text-slate-900">Dr. Tiago</Text>
+          </View>
+          <TouchableOpacity className="w-10 h-10 bg-slate-100 rounded-full items-center justify-center border border-slate-200 relative">
+            <Bell size={20} color="#475569" />
+            <View className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-white" />
+          </TouchableOpacity>
+        </View>
+
+        {/* Card de Faturamento (Sem gradiente por enquanto, usando azul sólido) */}
+        <View className="bg-blue-600 p-6 rounded-3xl shadow-lg shadow-blue-500/30 relative overflow-hidden">
+          <View className="flex-row justify-between items-start mb-4">
+            <View>
+              <Text className="text-blue-100 text-sm font-medium mb-1">Faturamento Hoje</Text>
+              <Text className="text-3xl font-bold text-white">R$ 1.250,00</Text>
+            </View>
+            <View className="p-2 bg-white/20 rounded-xl">
+              <DollarSign size={24} color="white" />
+            </View>
+          </View>
+          <View className="flex-row items-center bg-emerald-500/20 self-start px-3 py-1 rounded-lg border border-emerald-500/30">
+            <ArrowRight size={12} color="#D1FAE5" style={{ transform: [{ rotate: '-45deg' }] }} />
+            <Text className="text-emerald-100 text-xs font-bold ml-1">+12% vs ontem</Text>
+          </View>
+        </View>
+      </View>
+
+      {/* Acesso Rápido */}
+      <View className="px-6 mt-8">
+        <Text className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">Acesso Rápido</Text>
+        <View className="flex-row flex-wrap justify-between gap-4">
+          <QuickAction icon={Calendar} label="Agenda" color="text-indigo-600" bg="bg-indigo-50" onPress={() => router.push('/agenda')} />
+          <QuickAction icon={FileText} label="Relatórios" color="text-purple-600" bg="bg-purple-50" onPress={() => router.push('/reports')} />
+          <QuickAction icon={DollarSign} label="Nova Venda" color="text-orange-600" bg="bg-orange-50" onPress={() => router.push('/sales')} />
+          <QuickAction icon={MessageCircle} label="WhatsApp" color="text-emerald-600" bg="bg-emerald-50" onPress={() => router.push('/(tabs)/instance')} />
+        </View>
+      </View>
+
+      {/* Próximos Agendamentos */}
+      <View className="px-6 mt-8">
+        <Text className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">Próximos</Text>
+        <View className="space-y-3">
+          {nextAppointments.map((apt) => (
+            <Card key={apt.id} className="flex-row items-center gap-4 mb-3">
+              <View className="w-14 h-14 bg-blue-50 rounded-2xl items-center justify-center border border-blue-100">
+                <Text className="text-lg font-bold text-blue-700">{apt.time.split(':')[0]}</Text>
+                <Text className="text-[10px] text-blue-400 font-bold">{apt.time.split(':')[1]}</Text>
+              </View>
+              <View>
+                <Text className="font-bold text-slate-800 text-base">{apt.patient}</Text>
+                <Text className="text-xs text-slate-500 font-medium mt-1">{apt.type} • {apt.mode}</Text>
+              </View>
+            </Card>
+          ))}
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
+// Componente auxiliar local para os botões quadrados
+function QuickAction({ icon: Icon, label, color, bg, onPress }: any) {
+  const colorsMap: any = {
+    'bg-indigo-50': '#EEF2FF',
+    'text-indigo-600': '#4F46E5',
+    'bg-purple-50': '#FAF5FF',
+    'text-purple-600': '#9333EA',
+    'bg-orange-50': '#FFF7ED',
+    'text-orange-600': '#EA580C',
+    'bg-emerald-50': '#ECFDF5',
+    'text-emerald-600': '#059669',
+  };
+
+  return (
+    <TouchableOpacity 
+      className="w-[47%] bg-white p-4 rounded-3xl border border-slate-100 shadow-sm items-center py-6 gap-3 mb-4" 
+      onPress={onPress}
+      activeOpacity={0.7}
+      style={{
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.05,
+        shadowRadius: 8,
+        elevation: 2,
+      }}
+    >
+       <View 
+         className="w-14 h-14 rounded-2xl items-center justify-center mb-1"
+         style={{ backgroundColor: colorsMap[bg] }} 
+       >
+         <Icon size={28} color={colorsMap[color]} />
+       </View>
+       <Text className="font-bold text-slate-700 text-sm">{label}</Text>
+    </TouchableOpacity>
+  );
+}

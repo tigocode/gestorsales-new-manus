@@ -1,33 +1,50 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Home, Package, QrCode, Users } from 'lucide-react-native';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+    <Tabs screenOptions={{ 
+      headerShown: false,
+      tabBarActiveTintColor: '#2563EB', // Blue 600
+      tabBarInactiveTintColor: '#94a3b8', // Slate 400
+      tabBarStyle: {
+        borderTopColor: '#F1F5F9',
+        backgroundColor: '#FFFFFF',
+        height: 95,
+        paddingBottom: 10,
+        paddingTop: 10,
+      },
+      tabBarLabelStyle: {
+        fontSize: 10,
+        fontWeight: 'bold',
+      }
+    }}>
       <Tabs.Screen
-        name="index"
+        name="index" // Isso será a Home
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color }) => <Home size={24} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="products" // Vamos criar esse arquivo depois
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Produtos',
+          tabBarIcon: ({ color }) => <Package size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="clients" // Vamos criar esse arquivo depois
+        options={{
+          title: 'Clientes',
+          tabBarIcon: ({ color }) => <Users size={24} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="instance" // Vamos criar esse arquivo depois
+        options={{
+          title: 'Instância',
+          tabBarIcon: ({ color }) => <QrCode size={24} color={color} />,
         }}
       />
     </Tabs>
