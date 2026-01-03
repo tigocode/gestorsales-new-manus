@@ -6,6 +6,7 @@ import {
   Platform,
   ScrollView,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { Button } from "../components/ui/Button";
@@ -24,7 +25,7 @@ export default function LoginScreen() {
       className="flex-1 bg-white"
     >
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View className="flex-1 px-8 pt-20 pb-12">
+        <View className="flex-1 px-8 pt-28 pb-12">
           {/* Logo Section */}
           <View className="items-center mb-12">
             <View
@@ -56,10 +57,13 @@ export default function LoginScreen() {
               keyboardType="email-address"
             />
             <Input placeholder="Sua senha" icon={Lock} secureTextEntry />
+            {/* 👇 ATUALIZE ESTA PARTE 👇 */}
             <View className="flex-row justify-end mt-1">
-              <Text className="text-sm font-bold text-blue-600">
-                Esqueceu a senha?
-              </Text>
+              <TouchableOpacity onPress={() => router.push("/forgot-password")}>
+                <Text className="text-sm font-bold text-blue-600">
+                  Esqueceu a senha?
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
 
@@ -70,7 +74,12 @@ export default function LoginScreen() {
             </Button>
 
             <View className="mt-4">
-              <Button variant="secondary">Criar conta grátis</Button>
+              <Button
+                variant="secondary"
+                onPress={() => router.push("/register")}
+              >
+                Criar conta grátis
+              </Button>
             </View>
           </View>
         </View>

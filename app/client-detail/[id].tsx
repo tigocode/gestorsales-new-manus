@@ -8,6 +8,10 @@ import { ActivityIndicator, ScrollView, Text, TouchableOpacity, View } from 'rea
 const mockData: any = {
   1: { name: 'Alex Batista', phone: '(11) 99999-9999', avatar: 'AB' },
   2: { name: 'Eduarda Maria', phone: '(11) 98888-8888', avatar: 'EM' },
+  3: { name: 'Hugo Pontes', phone: '(21) 97777-7777', avatar: 'HP' },
+  4: { name: 'João Claudio', phone: '(31) 96666-6666', avatar: 'JC' },
+  5: { name: 'Mariana Silva', phone: '(31) 95555-5555', avatar: 'MS' },
+  6: { name: 'Tiago Dantas', phone: '(31) 95555-5555', avatar: 'TD' },
   // fallback
   default: { name: 'Cliente Visitante', phone: '(00) 00000-0000', avatar: 'CV' }
 };
@@ -115,9 +119,15 @@ export default function ClientDetailScreen() {
           </View>
         </View>
 
-        <View className="space-y-3">
-          <Button variant="secondary" icon={Calendar}>Ver Histórico de Consultas</Button>
-          <Button variant="secondary" icon={FileText}>Prontuário Digital</Button>
+        <View className="space-y-2">
+          <Button variant="secondary" icon={Calendar}>
+            <View className="justify-center">
+              <Text className="font-bold text-sm">Ver Histórico de Consultas</Text>
+            </View>
+          </Button>
+          <View>
+            <Button variant="secondary" icon={FileText}>Prontuário Digital</Button>
+          </View>
         </View>
       </ScrollView>
     </View>

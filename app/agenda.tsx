@@ -7,8 +7,9 @@ import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 const appointments = [
   { id: 1, time: '09:00', patient: 'Victor Araujo', type: 'Particular', mode: 'Online' },
   { id: 2, time: '12:00', patient: 'Hugo Pontes', type: 'Convênio', mode: 'Presencial' },
-  { id: 3, time: '14:00', patient: 'Natália Silva', type: 'Convênio', mode: 'Presencial' },
-  { id: 4, time: '16:30', patient: 'Amanda Costa', type: 'Particular', mode: 'Online' },
+  { id: 3, time: '11:30', patient: 'Tiago Dantas', type: 'Particular', mode: 'Online' },
+  { id: 4, time: '14:00', patient: 'Natália Silva', type: 'Convênio', mode: 'Presencial' },
+  { id: 5, time: '16:30', patient: 'Amanda Costa', type: 'Particular', mode: 'Online' },
 ];
 
 export default function AgendaScreen() {

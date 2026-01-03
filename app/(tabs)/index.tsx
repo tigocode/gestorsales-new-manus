@@ -23,10 +23,10 @@ export default function HomeScreen() {
       {/* HEADER FIXO */}
       <View className="bg-white px-6 pt-16 pb-6 rounded-b-[40px] border-b border-slate-100">
         <View className="flex-row justify-between items-center mb-6">
-          <View>
+          <TouchableOpacity onPress={() => router.push('/profile')}>
             <Text className="text-slate-500 text-sm font-medium">Bom dia,</Text>
             <Text className="text-2xl font-bold text-slate-900">Dr. Tiago</Text>
-          </View>
+          </TouchableOpacity>
 
           <TouchableOpacity className="w-10 h-10 bg-slate-100 rounded-full items-center justify-center border border-slate-200 relative">
             <Bell size={20} color="#475569" />

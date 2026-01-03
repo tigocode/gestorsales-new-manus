@@ -10,6 +10,7 @@ const mockClients = [
   { id: 3, name: 'Hugo Pontes', type: 'Convênio: Unimed', status: 'Presencial', phone: '(21) 97777-7777', avatar: 'HP' },
   { id: 4, name: 'João Claudio', type: 'Particular', status: 'Online', phone: '(31) 96666-6666', avatar: 'JC' },
   { id: 5, name: 'Mariana Silva', type: 'Particular', status: 'Presencial', phone: '(31) 95555-5555', avatar: 'MS' },
+  { id: 6, name: 'Tiago Dantas', type: 'Convênio: Unimed', status: 'Presencial', phone: '(31) 95555-5555', avatar: 'TD' },
 ];
 
 export default function ClientsScreen() {
@@ -49,7 +50,7 @@ export default function ClientsScreen() {
         {mockClients.map((client) => (
           <TouchableOpacity 
             key={client.id}
-            onPress={() => router.push('/client-detail/' + client.id)}
+            onPress={() => router.push('/client-detail/'+ client.id)}
           >
             <Card className="flex-row items-center justify-between mb-3">
               <View className="flex-row items-center gap-4">
