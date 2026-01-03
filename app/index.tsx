@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { ArrowRight, Calendar, Settings, User } from "lucide-react-native";
+import { ArrowRight, Calendar, Lock, User } from "lucide-react-native";
 import React from "react";
 import {
   KeyboardAvoidingView,
@@ -8,16 +8,14 @@ import {
   Text,
   View,
 } from "react-native";
-
-// Importando nossos componentes criados
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+import { Button } from "../components/ui/Button";
+import { Input } from "../components/ui/Input";
 
 export default function LoginScreen() {
   const router = useRouter();
 
   const handleLogin = () => {
-    router.replace("/(tabs)"); // Redireciona para a Home e impede voltar para o login
+    router.replace("/(tabs)");
   };
 
   return (
@@ -26,42 +24,54 @@ export default function LoginScreen() {
       className="flex-1 bg-white"
     >
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View className="flex-1 px-6 pt-20 pb-10 justify-center">
-          {/* Header / Logo Section */}
+        <View className="flex-1 px-8 pt-20 pb-12">
+          {/* Logo Section */}
           <View className="items-center mb-12">
-            <View className="w-24 h-24 bg-blue-600 rounded-3xl items-center justify-center shadow-lg shadow-blue-500/30 mb-8 rotate-3">
-              <Calendar size={48} color="white" />
+            <View
+              className="w-24 h-24 bg-blue-600 rounded-[32px] items-center justify-center mb-8"
+              style={{
+                shadowColor: "#2563EB",
+                shadowOffset: { width: 0, height: 10 },
+                shadowOpacity: 0.3,
+                shadowRadius: 20,
+                elevation: 10,
+              }}
+            >
+              <Calendar size={48} color="white" strokeWidth={2.5} />
             </View>
             <Text className="text-3xl font-bold text-slate-900 mb-2">
               Gestor Sales
             </Text>
-            <Text className="text-slate-500 text-lg text-center max-w-[260px]">
+            <Text className="text-slate-500 text-base text-center max-w-[260px] leading-relaxed">
               Gestão clínica e comercial simplificada para você.
             </Text>
           </View>
 
           {/* Form Section */}
-          <View className="space-y-4 w-full mb-8">
+          <View className="space-y-1 w-full mb-8">
             <Input
               placeholder="Seu e-mail"
               icon={User}
               autoCapitalize="none"
               keyboardType="email-address"
             />
-            <Input placeholder="Sua senha" icon={Settings} secureTextEntry />
-            <View className="flex-row justify-end mt-2">
-              <Text className="text-sm font-semibold text-blue-600">
+            <Input placeholder="Sua senha" icon={Lock} secureTextEntry />
+            <View className="flex-row justify-end mt-1">
+              <Text className="text-sm font-bold text-blue-600">
                 Esqueceu a senha?
               </Text>
             </View>
           </View>
 
-          {/* Action Buttons */}
-          <View className="space-y-4">
+          {/* Buttons */}
+          <View className="mt-6 mb-8">
             <Button onPress={handleLogin} icon={ArrowRight}>
               Entrar
             </Button>
-            <Button variant="secondary">Criar conta grátis</Button>
+
+            <View className="mt-4">
+              <Button variant="secondary">Criar conta grátis</Button>
+            </View>
           </View>
         </View>
       </ScrollView>

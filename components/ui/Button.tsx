@@ -37,17 +37,26 @@ export function Button({
     outline: "text-slate-700",
   };
 
+  // Estilo de sombra específico para o botão Primary
+  const shadowStyle = variant === 'primary' ? {
+    shadowColor: '#2563EB',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 8, // Sombra para Android
+  } : {};
+
   return (
     <TouchableOpacity 
       onPress={onPress}
       disabled={loading}
       className={`w-full py-4 rounded-2xl flex-row items-center justify-center border ${variants[variant]} ${className}`}
       activeOpacity={0.8}
+      style={shadowStyle}
     >
       {loading ? (
         <ActivityIndicator color={variant === 'secondary' || variant === 'ghost' ? '#475569' : '#FFF'} />
       ) : (
-        /* CORREÇÃO AQUI: Trocamos o fragmento <> pela View */
         <View className="flex-row items-center justify-center">
           {Icon && (
             <Icon 

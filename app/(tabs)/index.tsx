@@ -1,84 +1,122 @@
-import { Card } from '@/components/ui/Card'; // Ajuste o caminho se necessário
+import { Card } from '@/components/ui/Card';
 import { useRouter } from 'expo-router';
-import { ArrowRight, Bell, Calendar, DollarSign, FileText, MessageCircle } from 'lucide-react-native';
+import {
+  ArrowRight,
+  Bell,
+  Calendar,
+  DollarSign,
+  FileText,
+  MessageCircle,
+} from 'lucide-react-native';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen() {
   const router = useRouter();
 
-  // Dados mockados para os agendamentos
   const nextAppointments = [
     { id: 1, time: '09:00', patient: 'Victor Araujo', type: 'Particular', mode: 'Online' },
     { id: 2, time: '12:00', patient: 'Hugo Pontes', type: 'Convênio', mode: 'Presencial' },
   ];
 
   return (
-    <ScrollView className="flex-1 bg-slate-50" contentContainerStyle={{ paddingBottom: 100 }}>
-      {/* Header */}
-      <View className="bg-white px-6 pt-16 pb-6 rounded-b-[40px] shadow-sm border-b border-slate-100">
+    <View className="flex-1 bg-slate-50">
+      {/* HEADER FIXO */}
+      <View className="bg-white px-6 pt-16 pb-6 rounded-b-[40px] border-b border-slate-100">
         <View className="flex-row justify-between items-center mb-6">
           <View>
             <Text className="text-slate-500 text-sm font-medium">Bom dia,</Text>
             <Text className="text-2xl font-bold text-slate-900">Dr. Tiago</Text>
           </View>
+
           <TouchableOpacity className="w-10 h-10 bg-slate-100 rounded-full items-center justify-center border border-slate-200 relative">
             <Bell size={20} color="#475569" />
             <View className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-white" />
           </TouchableOpacity>
         </View>
 
-        {/* Card de Faturamento (Sem gradiente por enquanto, usando azul sólido) */}
+        {/* CARD FATURAMENTO (continua fixo junto ao header) */}
         <View className="bg-blue-600 p-6 rounded-3xl shadow-lg shadow-blue-500/30 relative overflow-hidden">
           <View className="flex-row justify-between items-start mb-4">
             <View>
-              <Text className="text-blue-100 text-sm font-medium mb-1">Faturamento Hoje</Text>
-              <Text className="text-3xl font-bold text-white">R$ 1.250,00</Text>
+              <Text className="text-blue-100 text-sm font-medium mb-1">
+                Faturamento Hoje
+              </Text>
+              <Text className="text-3xl font-bold text-white">
+                R$ 1.250,00
+              </Text>
             </View>
+
             <View className="p-2 bg-white/20 rounded-xl">
               <DollarSign size={24} color="white" />
             </View>
           </View>
+
           <View className="flex-row items-center bg-emerald-500/20 self-start px-3 py-1 rounded-lg border border-emerald-500/30">
-            <ArrowRight size={12} color="#D1FAE5" style={{ transform: [{ rotate: '-45deg' }] }} />
-            <Text className="text-emerald-100 text-xs font-bold ml-1">+12% vs ontem</Text>
+            <ArrowRight
+              size={12}
+              color="#D1FAE5"
+              style={{ transform: [{ rotate: '-45deg' }] }}
+            />
+            <Text className="text-emerald-100 text-xs font-bold ml-1">
+              +12% vs ontem
+            </Text>
           </View>
         </View>
       </View>
 
-      {/* Acesso Rápido */}
-      <View className="px-6 mt-8">
-        <Text className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">Acesso Rápido</Text>
-        <View className="flex-row flex-wrap justify-between gap-4">
-          <QuickAction icon={Calendar} label="Agenda" color="text-indigo-600" bg="bg-indigo-50" onPress={() => router.push('/agenda')} />
-          <QuickAction icon={FileText} label="Relatórios" color="text-purple-600" bg="bg-purple-50" onPress={() => router.push('/reports')} />
-          <QuickAction icon={DollarSign} label="Nova Venda" color="text-orange-600" bg="bg-orange-50" onPress={() => router.push('/sales')} />
-          <QuickAction icon={MessageCircle} label="WhatsApp" color="text-emerald-600" bg="bg-emerald-50" onPress={() => router.push('/(tabs)/instance')} />
-        </View>
-      </View>
+      {/* CONTEÚDO ROLÁVEL */}
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={{ paddingBottom: 100 }}
+      >
+        {/* ACESSO RÁPIDO */}
+        <View className="px-6 mt-8">
+          <Text className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-7">
+            Acesso Rápido
+          </Text>
 
-      {/* Próximos Agendamentos */}
-      <View className="px-6 mt-8">
-        <Text className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4">Próximos</Text>
-        <View className="space-y-3">
+          <View className="flex-row flex-wrap justify-between -mx-2">
+            <QuickAction icon={Calendar} label="Agenda" color="text-indigo-600" bg="bg-indigo-50" onPress={() => router.push('/agenda')} />
+            <QuickAction icon={FileText} label="Relatórios" color="text-purple-600" bg="bg-purple-50" onPress={() => router.push('/reports')} />
+            <QuickAction icon={DollarSign} label="Nova Venda" color="text-orange-600" bg="bg-orange-50" onPress={() => router.push('/sales')} />
+            <QuickAction icon={MessageCircle} label="WhatsApp" color="text-emerald-600" bg="bg-emerald-50" onPress={() => router.push('/(tabs)/instance')} />
+          </View>
+        </View>
+
+        {/* PRÓXIMOS */}
+        <View className="px-6 mt-8">
+          <Text className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-7">
+            Próximos
+          </Text>
+
           {nextAppointments.map((apt) => (
-            <Card key={apt.id} className="flex-row items-center gap-4 mb-3">
+            <Card key={apt.id} className="flex-row items-center gap-4 mb-6">
               <View className="w-14 h-14 bg-blue-50 rounded-2xl items-center justify-center border border-blue-100">
-                <Text className="text-lg font-bold text-blue-700">{apt.time.split(':')[0]}</Text>
-                <Text className="text-[10px] text-blue-400 font-bold">{apt.time.split(':')[1]}</Text>
+                <Text className="text-lg font-bold text-blue-700">
+                  {apt.time.split(':')[0]}
+                </Text>
+                <Text className="text-[10px] text-blue-400 font-bold">
+                  {apt.time.split(':')[1]}
+                </Text>
               </View>
+
               <View>
-                <Text className="font-bold text-slate-800 text-base">{apt.patient}</Text>
-                <Text className="text-xs text-slate-500 font-medium mt-1">{apt.type} • {apt.mode}</Text>
+                <Text className="font-bold text-slate-800 text-base">
+                  {apt.patient}
+                </Text>
+                <Text className="text-xs text-slate-500 font-medium mt-1">
+                  {apt.type} • {apt.mode}
+                </Text>
               </View>
             </Card>
           ))}
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
-// Componente auxiliar local para os botões quadrados
+/* QUICK ACTION */
 function QuickAction({ icon: Icon, label, color, bg, onPress }: any) {
   const colorsMap: any = {
     'bg-indigo-50': '#EEF2FF',
@@ -92,25 +130,20 @@ function QuickAction({ icon: Icon, label, color, bg, onPress }: any) {
   };
 
   return (
-    <TouchableOpacity 
-      className="w-[47%] bg-white p-4 rounded-3xl border border-slate-100 shadow-sm items-center py-6 gap-3 mb-4" 
+    <TouchableOpacity
+      className="w-1/2 px-2 mb-4"
       onPress={onPress}
       activeOpacity={0.7}
-      style={{
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 8,
-        elevation: 2,
-      }}
     >
-       <View 
-         className="w-14 h-14 rounded-2xl items-center justify-center mb-1"
-         style={{ backgroundColor: colorsMap[bg] }} 
-       >
-         <Icon size={28} color={colorsMap[color]} />
-       </View>
-       <Text className="font-bold text-slate-700 text-sm">{label}</Text>
+      <View className="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm items-center py-6 gap-3">
+        <View
+          className="w-14 h-14 rounded-2xl items-center justify-center"
+          style={{ backgroundColor: colorsMap[bg] }}
+        >
+          <Icon size={28} color={colorsMap[color]} />
+        </View>
+        <Text className="font-bold text-slate-700 text-sm">{label}</Text>
+      </View>
     </TouchableOpacity>
   );
 }

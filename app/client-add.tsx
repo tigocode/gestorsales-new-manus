@@ -34,13 +34,6 @@ export default function ClientAddScreen() {
       </View>
 
       <ScrollView contentContainerStyle={{ padding: 24 }}>
-        <View className="items-center mb-6">
-           <View className="w-24 h-24 bg-slate-200 rounded-full items-center justify-center mb-2">
-             <User size={40} color="#94a3b8" />
-           </View>
-           <Text className="text-blue-600 text-sm font-bold">Adicionar Foto</Text>
-        </View>
-
         <Input label="Nome Completo" placeholder="Ex: João Silva" icon={User} />
         <Input label="Telefone / WhatsApp" placeholder="(00) 00000-0000" icon={Smartphone} keyboardType="phone-pad" />
         <Input label="E-mail" placeholder="email@exemplo.com" icon={Mail} keyboardType="email-address" />
