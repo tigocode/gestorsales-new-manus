@@ -2,28 +2,28 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Stack, useRouter } from "expo-router";
 import {
-  ArrowRight,
-  Banknote,
-  Box,
-  CheckCircle2,
-  ChevronLeft,
-  CreditCard,
-  FileText,
-  Minus,
-  Plus,
-  Search,
-  ShoppingCart,
-  Trash2,
-  User,
-  Zap,
+    ArrowRight,
+    Banknote,
+    Box,
+    CheckCircle2,
+    ChevronLeft,
+    CreditCard,
+    FileText,
+    Minus,
+    Plus,
+    Search,
+    ShoppingCart,
+    Trash2,
+    User,
+    Zap,
 } from "lucide-react-native";
 import React, { useState } from "react";
 import {
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+    ScrollView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from "react-native";
 
 // Mocks
@@ -185,7 +185,7 @@ export default function SalesScreen() {
                 }}
               >
                 <View className="flex-row items-center gap-3">
-                  <View className="w-10 h-10 rounded-full bg-slate-100 items-center justify-center">
+                  <View className="w-10 h-10 rounded-full bg-slate-50 items-center justify-center">
                     <Text className="font-bold text-slate-600">
                       {client.avatar}
                     </Text>
@@ -224,7 +224,7 @@ export default function SalesScreen() {
                   <View className="flex-row items-center gap-3">
                     <View
                       className={`w-10 h-10 rounded-xl items-center justify-center ${
-                        qty > 0 ? "bg-blue-200" : "bg-slate-100"
+                        qty > 0 ? "bg-blue-200" : "bg-slate-50"
                       }`}
                     >
                       <product.icon
@@ -268,7 +268,7 @@ export default function SalesScreen() {
                     ) : (
                       <TouchableOpacity
                         onPress={() => addToCart(product.id)}
-                        className="w-8 h-8 rounded-full bg-slate-100 items-center justify-center"
+                        className="w-8 h-8 rounded-full bg-slate-50 items-center justify-center"
                       >
                         <Plus size={18} color="#64748b" />
                       </TouchableOpacity>

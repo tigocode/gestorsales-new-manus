@@ -28,7 +28,7 @@ export default function HomeScreen() {
             <Text className="text-2xl font-bold text-slate-900">Dr. Tiago</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity className="w-10 h-10 bg-slate-100 rounded-full items-center justify-center border border-slate-200 relative">
+          <TouchableOpacity className="w-10 h-10 bg-slate-50 rounded-full items-center justify-center border border-slate-200 relative">
             <Bell size={20} color="#475569" />
             <View className="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-white" />
           </TouchableOpacity>
@@ -75,7 +75,7 @@ export default function HomeScreen() {
             Acesso Rápido
           </Text>
 
-          <View className="flex-row flex-wrap justify-between -mx-2">
+          <View className="flex-row flex-wrap -ms-2">
             <QuickAction icon={Calendar} label="Agenda" color="text-indigo-600" bg="bg-indigo-50" onPress={() => router.push('/agenda')} />
             <QuickAction icon={FileText} label="Relatórios" color="text-purple-600" bg="bg-purple-50" onPress={() => router.push('/reports')} />
             <QuickAction icon={DollarSign} label="Nova Venda" color="text-orange-600" bg="bg-orange-50" onPress={() => router.push('/sales')} />
@@ -90,7 +90,7 @@ export default function HomeScreen() {
           </Text>
 
           {nextAppointments.map((apt) => (
-            <Card key={apt.id} className="flex-row items-center gap-4 mb-6">
+            <Card key={apt.id} className="flex-row items-center gap-2 mb-4 border border-gray-200">
               <View className="w-14 h-14 bg-blue-50 rounded-2xl items-center justify-center border border-blue-100">
                 <Text className="text-lg font-bold text-blue-700">
                   {apt.time.split(':')[0]}
@@ -135,7 +135,7 @@ function QuickAction({ icon: Icon, label, color, bg, onPress }: any) {
       onPress={onPress}
       activeOpacity={0.7}
     >
-      <View className="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm items-center py-6 gap-3">
+      <View className="bg-white p-4 rounded-3xl border border-gray-200 shadow-sm items-center py-6 gap-2">
         <View
           className="w-14 h-14 rounded-2xl items-center justify-center"
           style={{ backgroundColor: colorsMap[bg] }}

@@ -54,7 +54,7 @@ export default function ProductsScreen() {
             <TouchableOpacity 
               key={item}
               onPress={() => setActiveFilter(item)}
-              className={`px-4 py-2 rounded-lg mr-2 ${activeFilter === item ? 'bg-blue-600' : 'bg-slate-100 border border-slate-200'}`}
+              className={`px-4 py-2 rounded-lg mr-2 ${activeFilter === item ? 'bg-blue-600' : 'bg-slate-50 border border-slate-200'}`}
             >
               <Text className={`text-xs font-bold ${activeFilter === item ? 'text-white' : 'text-slate-600'}`}>
                 {item}
@@ -76,7 +76,7 @@ export default function ProductsScreen() {
               <View>
                 <Text className="font-bold text-slate-800 text-base">{product.name}</Text>
                 <View className="flex-row items-center gap-2 mt-1">
-                  <View className="bg-slate-100 px-2 py-0.5 rounded-md">
+                  <View className="bg-slate-50 px-2 py-0.5 rounded-md">
                     <Text className="text-[10px] font-bold text-slate-600 uppercase">{product.category}</Text>
                   </View>
                   {product.stock !== null && (

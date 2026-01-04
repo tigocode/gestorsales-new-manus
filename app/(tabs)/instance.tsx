@@ -84,13 +84,13 @@ export default function InstanceScreen() {
 
         {/* Botões de Ação */}
         <View className="mt-2">
-          <View className="mb-4">
+          <View className="mb-2">
             <Button variant="secondary" icon={RefreshCw}>
               Sincronizar Mensagens
             </Button>
           </View>
 
-          <View className="mb-4">
+          <View className="mb-2">
             <Button variant="secondary" icon={Settings}>
               Configurar Templates
             </Button>
@@ -111,7 +111,7 @@ export default function InstanceScreen() {
           </View>
         </View>
 
-        <Text className="mt-8 text-xs text-slate-400 text-center leading-5">
+        <Text className="mt-6 text-xs text-slate-400 text-center leading-5">
           Versão do Cliente: 2.24.5.11{"\n"}
           Última sincronização: Hoje às 09:30
         </Text>

@@ -54,7 +54,7 @@ export default function ClientsScreen() {
           >
             <Card className="flex-row items-center justify-between mb-3">
               <View className="flex-row items-center gap-4">
-                <View className="w-12 h-12 rounded-full bg-slate-100 items-center justify-center border border-slate-200">
+                <View className="w-12 h-12 rounded-full bg-slate-50 items-center justify-center border border-slate-200">
                   <Text className="font-bold text-slate-600 text-sm">{client.avatar}</Text>
                 </View>
                 <View>

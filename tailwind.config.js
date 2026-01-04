@@ -8,7 +8,7 @@ module.exports = {
         // Suas cores personalizadas do protótipo original
         primary: '#2563EB', // blue-600
         secondary: '#FFFFFF',
-        background: '#F8FAFC', // slate-50
+        background: '#2c5b89ff', // slate-50
       },
     },
   },
