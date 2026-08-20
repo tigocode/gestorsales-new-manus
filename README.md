@@ -1,4 +1,20 @@
-# Bem-vindo ao seu aplicativo Expo 👋
+# GestorSales
+
+Aplicativo Expo/React Native para gestão clínica e comercial, com autenticação Firebase e integração com o backend WAT-LAB para gerenciamento de instâncias WhatsApp.
+
+> **Configuração local:** o passo a passo completo está em [`SETUP.md`](./SETUP.md). Ele inclui Firebase Client, Email/Password, URL da API, execução no Expo, aparelho físico e troubleshooting.
+
+## Início rápido local
+
+```bash
+npm install
+cp .env.example .env
+npx expo start
+```
+
+Antes de iniciar, preencha no `.env` as variáveis `EXPO_PUBLIC_FIREBASE_*` e `EXPO_PUBLIC_WAT_API_URL`. Em aparelho físico, substitua `127.0.0.1` pelo IP da máquina na rede local, por exemplo `http://192.168.1.20:3002`. O backend WAT-LAB precisa estar rodando conforme o [guia do backend](../wat-lab/SETUP.md) ou conforme o `SETUP.md` do repositório WAT-LAB.
+
+O fluxo é: criar conta ou entrar pelo Firebase Auth, abrir a aba **Instância**, gerar o QR, ler pelo WhatsApp e aguardar a atualização do status. Consulte [`SETUP.md`](./SETUP.md) para os comandos e a configuração completa.
 
 Este é um projeto [Expo](https://expo.dev) criado com [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
